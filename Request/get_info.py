@@ -25,12 +25,18 @@ def create_teams(url: str) ->list[Team]:
 def create_matches(url: str)-> list[Match]:
     response = get(url)
     matches = []
+    teams = create_teams('https://raw.githubusercontent.com/Algoritmos-y-Programacion-2223-1/api-proyecto/main/teams.json')
+    stadiums = create_stadiums('https://raw.githubusercontent.com/Algoritmos-y-Programacion-2223-1/api-proyecto/main/stadiums.json')
     if response.status_code == 200:
         for match in response.json():
-            m = Match(match['home_team'], match['away_team'], match['date'], match['stadium_id'], match['id'])
+            home_team = next((team for team in teams if team.get_country() == match['home_team']), None)
+            away_team = next((team for team in teams if team.get_country() == match['away_team']), None)
+            stadium = next((stadium for stadium in stadiums if stadium.getId() == match['stadium_id']), None)
+            m = Match(home_team, away_team, match['date'], stadium, match['id'])
             matches.append(m)
 
     return matches
+
 
 
 def create_stadiums(url : str) -> list[Stadium]:
@@ -42,7 +48,7 @@ def create_stadiums(url : str) -> list[Stadium]:
             for restaurant in stadium['restaurants']:
                 r = Restaurant(restaurant['name'])
                 for product in restaurant['products']:
-                    p = Product(product['name'], product['price'], product['type'])
+                    p = Product(product['name'], product['price'], product['type'], product['quantity'], product['adicional'])
                     r.addProducts(p)
                 s.addRestaurants(r)
             stadiums.append(s)

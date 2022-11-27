@@ -35,5 +35,5 @@ class Restaurant:
     '''
 
     def __str__(self) -> str:
-        products = ''.join(str(product)  + '\n' for product in self.__products)
-        return f"Nombre: {self.__name} \nProductos:\n{products}"
+        products = '\n'.join(str(product)  + '\n' for product in self.__products)
+        return f"Nombre: {self.__name} \nProductos:\n\n{products}\n"

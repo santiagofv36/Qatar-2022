@@ -1,3 +1,4 @@
+from Objects.Stadium import Stadium
 from Objects.Team import Team
 
 from datetime import datetime
@@ -13,7 +14,7 @@ class Match:
         Inicializador
     '''
 
-    def __init__(self, team1 : Team, team2 : Team, date : datetime, stadium_id: int, id :int) -> None:
+    def __init__(self, team1 : Team, team2 : Team, date : datetime, stadium_id: Stadium, id :int) -> None:
         self.__team1 = team1
         self.__team2 = team2
         self.__date = date
@@ -25,10 +26,10 @@ class Match:
         Getters
     '''
 
-    def getTeam1(self) -> str:
+    def get_home_team(self) -> str:
         return self.__team1
 
-    def getTeam2(self) -> str:
+    def get_away_team(self) -> str:
         return self.__team2
 
     def getDate(self) -> str:
@@ -43,8 +44,14 @@ class Match:
     def getId(self) -> int:
         return self.__id
     
-    def getStadiumId(self) -> int:
+    def getStadium(self) -> int:
         return self.__stadium_id
+
+    def get_teams(self) -> list:
+        return [self.__team1, self.__team2]
+
+    def get_name(self):
+        return f"{self.__team1.get_country()} vs {self.__team2.get_country()}"
 
     '''
         Setters
@@ -77,4 +84,4 @@ class Match:
     '''
 
     def __str__(self):
-        return f"Partido: {self.__team1} vs {self.__team2} \nFecha: {self.__date} \nEstadio: {self.__stadium_id} \nId: {self.__id}"
+        return f"Partido: {self.__team1.get_country()} vs {self.__team2.get_country()} \nFecha: {self.__date} \nEstadio: {self.__stadium_id.getName()}\n"

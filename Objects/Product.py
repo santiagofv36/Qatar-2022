@@ -10,10 +10,12 @@ class Product:
         Inicializador
     '''
 
-    def __init__(self, name : str, price : float, type : str):
+    def __init__(self, name : str, price : float, type : str, quantity : int, aditional : str):
         self.__name = name
         self.__price = price
         self.__type = type
+        self.__quantity = quantity
+        self.__aditional = aditional
 
     '''
         Getters
@@ -28,6 +30,12 @@ class Product:
     def getType(self) -> str:
         return self.__type
 
+    def getQuantity(self) -> int:
+        return self.__quantity
+
+    def getAditional(self) -> str:
+        return self.__aditional
+
     '''
         Setters
     '''
@@ -41,9 +49,15 @@ class Product:
     def setType(self, type) -> None:
         self.__type = type
 
+    def setQuantity(self, quantity) -> None:
+        self.__quantity = quantity
+
+    def setAditional(self, aditional) -> None:
+        self.__aditional = aditional
+
     '''
         Metodo para imprimir los datos del objeto
     '''
 
     def __str__(self) -> str:
-        return f"Nombre: {self.__name} \nPrecio: {self.__price} \nTipo: {self.__type}"
+        return f"Nombre: {self.__name}\n Precio: {self.__price}\n Tipo: {self.__type}\n Cantidad: {self.__quantity}\n Aditional: {self.__aditional}"
