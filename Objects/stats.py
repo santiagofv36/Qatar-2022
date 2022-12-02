@@ -88,12 +88,3 @@ class Stats:
         Gastos totales: {self.__totalExpenses}
         Gastos promedio: {self.avgExpenses()}
         '''
-
-
-    
-
-
-
-
-
-
